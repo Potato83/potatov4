@@ -1,0 +1,29 @@
+/*body{
+	background: #ccc;
+}*/
+
+.o-banner{
+	background: blue;
+	/*background: url('/assets/images/nice.jpg') 1% no-repeat;*/
+	width: 100%;
+	min-height: 70vh;
+  position: relative;
+
+	&__img{
+		position: absolute;
+    width: 100%;
+    left: 0;	
+
+    height: 210%;
+    top: -5%;
+ 		opacity: 0.4;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+ 
+    transform: translate3d(0, 0, 0);	
+    text-align: center;
+    padding-top: 300px;
+
+	}
+}
