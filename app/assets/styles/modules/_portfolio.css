@@ -1,0 +1,13 @@
+.portfolio{
+	height: 100vh;
+	background: url('/assets/images/dark.jpg') no-repeat 0 0;
+	background: black;
+  background-size: 100%;
+  position: relative;
+  z-index: 300;
+  text-align: center;
+}
+
+body{
+	background: red;
+}

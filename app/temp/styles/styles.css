@@ -465,25 +465,64 @@ template {
 }*/
 
 .o-banner{
-	background: blue;
-	/*background: url('/assets/images/nice.jpg') 1% no-repeat;*/
+	/*background: url('/assets/images/dark.jpg') no-repeat 0 0;
+    background-size: 100%;
+    background-position: 0 -100vh;*/
+    /*background: blue;*/
 	width: 100%;
-	min-height: 70vh;
-  position: relative;
+	height: 100vh;
+    position: relative;
+    z-index: 250;
 }
+
+/*background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background: url('/assets/images/nice.jpg') no-repeat 0 0;
+    background-size: 100%;*/
 
 .o-banner__img{
   position: absolute;
-  width: 100%;
+  width: 105%;
   left: 0;
-  height: 210%;
-  top: -5%;
-  opacity: 0.4;
+  margin: -5%;
+  padding: 0;
+  height: 110%;/*top: -5%;*//*opacity: 0.4;*/
+  z-index: 1;
   background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;
+  background: url('/assets/images/dark.jpg') no-repeat 0 0;
+  background-size: 100%;
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
+  text-align: center;/*padding-top: 300px;*/
+}
+
+.o-banner__front{
   text-align: center;
-  padding-top: 300px;
+  font-size: 200px;
+  line-height: 200px;
+  color: #fff;
+  z-index: 400;
+  position: absolute;
+  width: 100%;
+  margin-top: 50%;
+  -webkit-transform: translateY(-60%);
+          transform: translateY(-60%);
+  height: 100%;/*background: blue;*/
+}
+
+.portfolio{
+	height: 100vh;
+	background: url('/assets/images/dark.jpg') no-repeat 0 0;
+	background: black;
+  background-size: 100%;
+  position: relative;
+  z-index: 300;
+  text-align: center;
+}
+
+body{
+	background: red;
 }
