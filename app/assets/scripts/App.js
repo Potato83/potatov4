@@ -1,6 +1,6 @@
 import MobileMenu from './modules/MobileMenu';
 import RevealOnScroll from './modules/RevealOnScroll';
-import StickyHeader from './modules/StickyHeader';
+import scroller from './modules/Scroller';
 import $ from 'jquery';
 import Modal from './modules/Modal';
 import Parallax from 'parallax-scroll';
@@ -9,10 +9,7 @@ const parallax = new Parallax('.js-parallax', {
 });
 parallax.animate();
 var mobileMenu = new MobileMenu();
-new RevealOnScroll($('.feature-item'), "85%");
-new RevealOnScroll($('.testimonial'), "60%");
-new RevealOnScroll($('.reveal'), "70%");
-var stickyHeader = new StickyHeader();
+new RevealOnScroll($('.box'), "70%");
 var modal = new Modal();
 
 

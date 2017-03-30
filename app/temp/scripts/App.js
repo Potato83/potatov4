@@ -10339,7 +10339,7 @@ if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var store  = __webpack_require__(36)('wks')
+var store  = __webpack_require__(35)('wks')
   , uid    = __webpack_require__(12)
   , Symbol = __webpack_require__(1).Symbol;
 module.exports = function(name){
@@ -10369,7 +10369,7 @@ module.exports = function(it){
 /***/ (function(module, exports, __webpack_require__) {
 
 // optional / simple context binding
-var aFunction = __webpack_require__(23);
+var aFunction = __webpack_require__(22);
 module.exports = function(fn, that, length){
   aFunction(fn);
   if(that === undefined)return fn;
@@ -10396,7 +10396,7 @@ module.exports = function(fn, that, length){
 var global    = __webpack_require__(1)
   , core      = __webpack_require__(3)
   , hide      = __webpack_require__(8)
-  , redefine  = __webpack_require__(35)
+  , redefine  = __webpack_require__(34)
   , ctx       = __webpack_require__(5)
   , PROTOTYPE = 'prototype';
 
@@ -10452,8 +10452,8 @@ module.exports = function(exec){
 /***/ (function(module, exports, __webpack_require__) {
 
 var $          = __webpack_require__(10)
-  , createDesc = __webpack_require__(34);
-module.exports = __webpack_require__(27) ? function(object, key, value){
+  , createDesc = __webpack_require__(33);
+module.exports = __webpack_require__(26) ? function(object, key, value){
   return $.setDesc(object, key, createDesc(1, value));
 } : function(object, key, value){
   object[key] = value;
@@ -10489,7 +10489,7 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.13 ToObject(argument)
-var defined = __webpack_require__(26);
+var defined = __webpack_require__(25);
 module.exports = function(it){
   return Object(defined(it));
 };
@@ -10506,6 +10506,959 @@ module.exports = function(key){
 
 /***/ }),
 /* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var MobileMenu = function () {
+	function MobileMenu() {
+		_classCallCheck(this, MobileMenu);
+
+		this.siteHeader = (0, _jquery2.default)('.site-header');
+		this.menuIcon = (0, _jquery2.default)('.site-header__menu-icon');
+		this.menuContent = (0, _jquery2.default)('.site-header__menu-content');
+		this.events();
+	}
+
+	_createClass(MobileMenu, [{
+		key: 'events',
+		value: function events() {
+			this.menuIcon.click(this.toggleTheMenu.bind(this));
+		}
+	}, {
+		key: 'toggleTheMenu',
+		value: function toggleTheMenu() {
+			this.menuContent.toggleClass('site-header__menu-content--is-visible');
+			this.siteHeader.toggleClass('site-header--is-expanded');
+			this.menuIcon.toggleClass('site-header__menu-icon--close-x');
+		}
+	}]);
+
+	return MobileMenu;
+}();
+
+// $(document).ready(function(){
+// 	alert('moose');
+// });
+
+exports.default = MobileMenu;
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Modal = function () {
+	function Modal() {
+		_classCallCheck(this, Modal);
+
+		this.openModalButton = (0, _jquery2.default)('.open-modal');
+		this.modal = (0, _jquery2.default)('.modal');
+		this.closeModalButton = (0, _jquery2.default)('.modal__close');
+		this.events();
+	}
+
+	_createClass(Modal, [{
+		key: 'events',
+		value: function events() {
+			// clicking the open modal button
+			this.openModalButton.click(this.openModal.bind(this));
+
+			// clicking the x close modal button
+			this.closeModalButton.click(this.closeModal.bind(this));
+
+			// pushes any key
+			(0, _jquery2.default)(document).keyup(this.keyPressHandler.bind(this));
+		}
+	}, {
+		key: 'keyPressHandler',
+		value: function keyPressHandler(e) {
+			if (e.keyCode == 27) {
+				this.closeModal();
+			}
+		}
+	}, {
+		key: 'openModal',
+		value: function openModal() {
+			this.modal.addClass('modal--is-visible');
+			return false;
+		}
+	}, {
+		key: 'closeModal',
+		value: function closeModal() {
+			this.modal.removeClass('modal--is-visible');
+			return false;
+		}
+	}]);
+
+	return Modal;
+}();
+
+exports.default = Modal;
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _noframework = __webpack_require__(41);
+
+var _noframework2 = _interopRequireDefault(_noframework);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var RevealOnScroll = function () {
+	function RevealOnScroll(els, offset) {
+		_classCallCheck(this, RevealOnScroll);
+
+		this.itemsToReveal = els;
+		this.offsetPercentage = offset;
+		this.hideInitially();
+		this.createWaypoints();
+	}
+
+	_createClass(RevealOnScroll, [{
+		key: 'hideInitially',
+		value: function hideInitially() {
+			this.itemsToReveal.addClass('reveal-item');
+		}
+	}, {
+		key: 'createWaypoints',
+		value: function createWaypoints() {
+			var that = this;
+			this.itemsToReveal.each(function () {
+				var currentItem = this;
+				new Waypoint({
+					element: currentItem,
+					handler: function handler() {
+						(0, _jquery2.default)(currentItem).addClass('reveal-item--is-visible');
+					},
+					offset: that.offsetPercentage
+				});
+			});
+		}
+	}]);
+
+	return RevealOnScroll;
+}();
+
+exports.default = RevealOnScroll;
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _jquerySmoothScroll = __webpack_require__(21);
+
+var _jquerySmoothScroll2 = _interopRequireDefault(_jquerySmoothScroll);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _jquery2.default)('#scroll').smoothScroll({ speed: 800 });
+
+/***/ }),
+/* 17 */,
+/* 18 */,
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+__webpack_require__(40);
+
+__webpack_require__(39);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Parallax = function () {
+  function Parallax(selector, options) {
+    _classCallCheck(this, Parallax);
+
+    this.lastPosition = -1;
+
+    // Establish default settings
+    this.settings = Object.assign({
+      speed: 0.2
+    }, options);
+
+    if (typeof selector === 'string') {
+      this.elems = Array.from(document.querySelectorAll(selector));
+    } else if (Array.isArray(selector)) {
+      this.elems = selector;
+    } else {
+      this.elems = [selector];
+    }
+  }
+
+  _createClass(Parallax, [{
+    key: 'updatePosition',
+    value: function updatePosition() {
+      var _this = this;
+
+      this.elems.forEach(function (elem) {
+        var offset = elem.getBoundingClientRect().top + _this.lastPosition;
+        var yPosition = Math.round((offset - _this.lastPosition) * _this.settings.speed);
+
+        // Apply the y-axis transform
+        elem.style.transform = 'translate3d(0, ' + yPosition * -1 + 'px, 0)'; // eslint-disable-line
+      });
+    }
+  }, {
+    key: 'animate',
+    value: function animate() {
+      var _this2 = this;
+
+      // If the offset position hasn't changed, skip this frame
+      if (this.lastPosition === window.pageYOffset) {
+        window.requestAnimationFrame(function () {
+          _this2.animate();
+        });
+
+        return false;
+      }
+
+      // Save the new offset position
+      this.lastPosition = window.pageYOffset;
+
+      this.updatePosition();
+
+      return window.requestAnimationFrame(function () {
+        _this2.animate();
+      });
+    }
+  }]);
+
+  return Parallax;
+}();
+
+exports.default = Parallax;
+module.exports = exports['default'];
+
+
+/***/ }),
+/* 20 */,
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+ * jQuery Smooth Scroll - v2.1.2 - 2017-01-19
+ * https://github.com/kswedberg/jquery-smooth-scroll
+ * Copyright (c) 2017 Karl Swedberg
+ * Licensed MIT
+ */
+
+(function(factory) {
+  if (true) {
+    // AMD. Register as an anonymous module.
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(0)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof module === 'object' && module.exports) {
+    // CommonJS
+    factory(require('jquery'));
+  } else {
+    // Browser globals
+    factory(jQuery);
+  }
+}(function($) {
+
+  var version = '2.1.2';
+  var optionOverrides = {};
+  var defaults = {
+    exclude: [],
+    excludeWithin: [],
+    offset: 0,
+
+    // one of 'top' or 'left'
+    direction: 'top',
+
+    // if set, bind click events through delegation
+    //  supported since jQuery 1.4.2
+    delegateSelector: null,
+
+    // jQuery set of elements you wish to scroll (for $.smoothScroll).
+    //  if null (default), $('html, body').firstScrollable() is used.
+    scrollElement: null,
+
+    // only use if you want to override default behavior
+    scrollTarget: null,
+
+    // fn(opts) function to be called before scrolling occurs.
+    // `this` is the element(s) being scrolled
+    beforeScroll: function() {},
+
+    // fn(opts) function to be called after scrolling occurs.
+    // `this` is the triggering element
+    afterScroll: function() {},
+
+    // easing name. jQuery comes with "swing" and "linear." For others, you'll need an easing plugin
+    // from jQuery UI or elsewhere
+    easing: 'swing',
+
+    // speed can be a number or 'auto'
+    // if 'auto', the speed will be calculated based on the formula:
+    // (current scroll position - target scroll position) / autoCoeffic
+    speed: 400,
+
+    // coefficient for "auto" speed
+    autoCoefficient: 2,
+
+    // $.fn.smoothScroll only: whether to prevent the default click action
+    preventDefault: true
+  };
+
+  var getScrollable = function(opts) {
+    var scrollable = [];
+    var scrolled = false;
+    var dir = opts.dir && opts.dir === 'left' ? 'scrollLeft' : 'scrollTop';
+
+    this.each(function() {
+      var el = $(this);
+
+      if (this === document || this === window) {
+        return;
+      }
+
+      if (document.scrollingElement && (this === document.documentElement || this === document.body)) {
+        scrollable.push(document.scrollingElement);
+
+        return false;
+      }
+
+      if (el[dir]() > 0) {
+        scrollable.push(this);
+      } else {
+        // if scroll(Top|Left) === 0, nudge the element 1px and see if it moves
+        el[dir](1);
+        scrolled = el[dir]() > 0;
+
+        if (scrolled) {
+          scrollable.push(this);
+        }
+        // then put it back, of course
+        el[dir](0);
+      }
+    });
+
+    if (!scrollable.length) {
+      this.each(function() {
+        // If no scrollable elements and <html> has scroll-behavior:smooth because
+        // "When this property is specified on the root element, it applies to the viewport instead."
+        // and "The scroll-behavior property of the … body element is *not* propagated to the viewport."
+        // → https://drafts.csswg.org/cssom-view/#propdef-scroll-behavior
+        if (this === document.documentElement && $(this).css('scrollBehavior') === 'smooth') {
+          scrollable = [this];
+        }
+
+        // If still no scrollable elements, fall back to <body>,
+        // if it's in the jQuery collection
+        // (doing this because Safari sets scrollTop async,
+        // so can't set it to 1 and immediately get the value.)
+        if (!scrollable.length && this.nodeName === 'BODY') {
+          scrollable = [this];
+        }
+      });
+    }
+
+    // Use the first scrollable element if we're calling firstScrollable()
+    if (opts.el === 'first' && scrollable.length > 1) {
+      scrollable = [scrollable[0]];
+    }
+
+    return scrollable;
+  };
+
+  var rRelative = /^([\-\+]=)(\d+)/;
+  $.fn.extend({
+    scrollable: function(dir) {
+      var scrl = getScrollable.call(this, {dir: dir});
+
+      return this.pushStack(scrl);
+    },
+    firstScrollable: function(dir) {
+      var scrl = getScrollable.call(this, {el: 'first', dir: dir});
+
+      return this.pushStack(scrl);
+    },
+
+    smoothScroll: function(options, extra) {
+      options = options || {};
+
+      if (options === 'options') {
+        if (!extra) {
+          return this.first().data('ssOpts');
+        }
+
+        return this.each(function() {
+          var $this = $(this);
+          var opts = $.extend($this.data('ssOpts') || {}, extra);
+
+          $(this).data('ssOpts', opts);
+        });
+      }
+
+      var opts = $.extend({}, $.fn.smoothScroll.defaults, options);
+
+      var clickHandler = function(event) {
+        var escapeSelector = function(str) {
+          return str.replace(/(:|\.|\/)/g, '\\$1');
+        };
+
+        var link = this;
+        var $link = $(this);
+        var thisOpts = $.extend({}, opts, $link.data('ssOpts') || {});
+        var exclude = opts.exclude;
+        var excludeWithin = thisOpts.excludeWithin;
+        var elCounter = 0;
+        var ewlCounter = 0;
+        var include = true;
+        var clickOpts = {};
+        var locationPath = $.smoothScroll.filterPath(location.pathname);
+        var linkPath = $.smoothScroll.filterPath(link.pathname);
+        var hostMatch = location.hostname === link.hostname || !link.hostname;
+        var pathMatch = thisOpts.scrollTarget || (linkPath === locationPath);
+        var thisHash = escapeSelector(link.hash);
+
+        if (thisHash && !$(thisHash).length) {
+          include = false;
+        }
+
+        if (!thisOpts.scrollTarget && (!hostMatch || !pathMatch || !thisHash)) {
+          include = false;
+        } else {
+          while (include && elCounter < exclude.length) {
+            if ($link.is(escapeSelector(exclude[elCounter++]))) {
+              include = false;
+            }
+          }
+
+          while (include && ewlCounter < excludeWithin.length) {
+            if ($link.closest(excludeWithin[ewlCounter++]).length) {
+              include = false;
+            }
+          }
+        }
+
+        if (include) {
+          if (thisOpts.preventDefault) {
+            event.preventDefault();
+          }
+
+          $.extend(clickOpts, thisOpts, {
+            scrollTarget: thisOpts.scrollTarget || thisHash,
+            link: link
+          });
+
+          $.smoothScroll(clickOpts);
+        }
+      };
+
+      if (options.delegateSelector !== null) {
+        this
+        .off('click.smoothscroll', options.delegateSelector)
+        .on('click.smoothscroll', options.delegateSelector, clickHandler);
+      } else {
+        this
+        .off('click.smoothscroll')
+        .on('click.smoothscroll', clickHandler);
+      }
+
+      return this;
+    }
+  });
+
+  var getExplicitOffset = function(val) {
+    var explicit = {relative: ''};
+    var parts = typeof val === 'string' && rRelative.exec(val);
+
+    if (typeof val === 'number') {
+      explicit.px = val;
+    } else if (parts) {
+      explicit.relative = parts[1];
+      explicit.px = parseFloat(parts[2]) || 0;
+    }
+
+    return explicit;
+  };
+
+  $.smoothScroll = function(options, px) {
+    if (options === 'options' && typeof px === 'object') {
+      return $.extend(optionOverrides, px);
+    }
+    var opts, $scroller, speed, delta;
+    var explicitOffset = getExplicitOffset(options);
+    var scrollTargetOffset = {};
+    var scrollerOffset = 0;
+    var offPos = 'offset';
+    var scrollDir = 'scrollTop';
+    var aniProps = {};
+    var aniOpts = {};
+
+    if (explicitOffset.px) {
+      opts = $.extend({link: null}, $.fn.smoothScroll.defaults, optionOverrides);
+    } else {
+      opts = $.extend({link: null}, $.fn.smoothScroll.defaults, options || {}, optionOverrides);
+
+      if (opts.scrollElement) {
+        offPos = 'position';
+
+        if (opts.scrollElement.css('position') === 'static') {
+          opts.scrollElement.css('position', 'relative');
+        }
+      }
+
+      if (px) {
+        explicitOffset = getExplicitOffset(px);
+      }
+    }
+
+    scrollDir = opts.direction === 'left' ? 'scrollLeft' : scrollDir;
+
+    if (opts.scrollElement) {
+      $scroller = opts.scrollElement;
+
+      if (!explicitOffset.px && !(/^(?:HTML|BODY)$/).test($scroller[0].nodeName)) {
+        scrollerOffset = $scroller[scrollDir]();
+      }
+    } else {
+      $scroller = $('html, body').firstScrollable(opts.direction);
+    }
+
+    // beforeScroll callback function must fire before calculating offset
+    opts.beforeScroll.call($scroller, opts);
+
+    scrollTargetOffset = explicitOffset.px ? explicitOffset : {
+      relative: '',
+      px: ($(opts.scrollTarget)[offPos]() && $(opts.scrollTarget)[offPos]()[opts.direction]) || 0
+    };
+
+    aniProps[scrollDir] = scrollTargetOffset.relative + (scrollTargetOffset.px + scrollerOffset + opts.offset);
+
+    speed = opts.speed;
+
+    // automatically calculate the speed of the scroll based on distance / coefficient
+    if (speed === 'auto') {
+
+      // $scroller[scrollDir]() is position before scroll, aniProps[scrollDir] is position after
+      // When delta is greater, speed will be greater.
+      delta = Math.abs(aniProps[scrollDir] - $scroller[scrollDir]());
+
+      // Divide the delta by the coefficient
+      speed = delta / opts.autoCoefficient;
+    }
+
+    aniOpts = {
+      duration: speed,
+      easing: opts.easing,
+      complete: function() {
+        opts.afterScroll.call(opts.link, opts);
+      }
+    };
+
+    if (opts.step) {
+      aniOpts.step = opts.step;
+    }
+
+    if ($scroller.length) {
+      $scroller.stop().animate(aniProps, aniOpts);
+    } else {
+      opts.afterScroll.call(opts.link, opts);
+    }
+  };
+
+  $.smoothScroll.version = version;
+  $.smoothScroll.filterPath = function(string) {
+    string = string || '';
+
+    return string
+      .replace(/^\//, '')
+      .replace(/(?:index|default).[a-zA-Z]{3,4}$/, '')
+      .replace(/\/$/, '');
+  };
+
+  // default options
+  $.fn.smoothScroll.defaults = defaults;
+
+}));
+
+
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports) {
+
+module.exports = function(it){
+  if(typeof it != 'function')throw TypeError(it + ' is not a function!');
+  return it;
+};
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__(29);
+module.exports = function(it){
+  if(!isObject(it))throw TypeError(it + ' is not an object!');
+  return it;
+};
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// getting tag from 19.1.3.6 Object.prototype.toString()
+var cof = __webpack_require__(4)
+  , TAG = __webpack_require__(2)('toStringTag')
+  // ES3 wrong here
+  , ARG = cof(function(){ return arguments; }()) == 'Arguments';
+
+module.exports = function(it){
+  var O, T, B;
+  return it === undefined ? 'Undefined' : it === null ? 'Null'
+    // @@toStringTag case
+    : typeof (T = (O = Object(it))[TAG]) == 'string' ? T
+    // builtinTag case
+    : ARG ? cof(O)
+    // ES3 arguments fallback
+    : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
+};
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports) {
+
+// 7.2.1 RequireObjectCoercible(argument)
+module.exports = function(it){
+  if(it == undefined)throw TypeError("Can't call method on  " + it);
+  return it;
+};
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Thank's IE8 for his funny defineProperty
+module.exports = !__webpack_require__(7)(function(){
+  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
+});
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// fallback for non-array-like ES3 and non-enumerable old V8 strings
+var cof = __webpack_require__(4);
+module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
+  return cof(it) == 'String' ? it.split('') : Object(it);
+};
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// check on default Array iterator
+var Iterators  = __webpack_require__(9)
+  , ITERATOR   = __webpack_require__(2)('iterator')
+  , ArrayProto = Array.prototype;
+
+module.exports = function(it){
+  return it !== undefined && (Iterators.Array === it || ArrayProto[ITERATOR] === it);
+};
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports) {
+
+module.exports = function(it){
+  return typeof it === 'object' ? it !== null : typeof it === 'function';
+};
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// call something on iterator step with safe closing on error
+var anObject = __webpack_require__(23);
+module.exports = function(iterator, fn, value, entries){
+  try {
+    return entries ? fn(anObject(value)[0], value[1]) : fn(value);
+  // 7.4.6 IteratorClose(iterator, completion)
+  } catch(e){
+    var ret = iterator['return'];
+    if(ret !== undefined)anObject(ret.call(iterator));
+    throw e;
+  }
+};
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var ITERATOR     = __webpack_require__(2)('iterator')
+  , SAFE_CLOSING = false;
+
+try {
+  var riter = [7][ITERATOR]();
+  riter['return'] = function(){ SAFE_CLOSING = true; };
+  Array.from(riter, function(){ throw 2; });
+} catch(e){ /* empty */ }
+
+module.exports = function(exec, skipClosing){
+  if(!skipClosing && !SAFE_CLOSING)return false;
+  var safe = false;
+  try {
+    var arr  = [7]
+      , iter = arr[ITERATOR]();
+    iter.next = function(){ safe = true; };
+    arr[ITERATOR] = function(){ return iter; };
+    exec(arr);
+  } catch(e){ /* empty */ }
+  return safe;
+};
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.1 Object.assign(target, source, ...)
+var $        = __webpack_require__(10)
+  , toObject = __webpack_require__(11)
+  , IObject  = __webpack_require__(27);
+
+// should work with symbols and should have deterministic property order (V8 bug)
+module.exports = __webpack_require__(7)(function(){
+  var a = Object.assign
+    , A = {}
+    , B = {}
+    , S = Symbol()
+    , K = 'abcdefghijklmnopqrst';
+  A[S] = 7;
+  K.split('').forEach(function(k){ B[k] = k; });
+  return a({}, A)[S] != 7 || Object.keys(a({}, B)).join('') != K;
+}) ? function assign(target, source){ // eslint-disable-line no-unused-vars
+  var T     = toObject(target)
+    , $$    = arguments
+    , $$len = $$.length
+    , index = 1
+    , getKeys    = $.getKeys
+    , getSymbols = $.getSymbols
+    , isEnum     = $.isEnum;
+  while($$len > index){
+    var S      = IObject($$[index++])
+      , keys   = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S)
+      , length = keys.length
+      , j      = 0
+      , key;
+    while(length > j)if(isEnum.call(S, key = keys[j++]))T[key] = S[key];
+  }
+  return T;
+} : Object.assign;
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports) {
+
+module.exports = function(bitmap, value){
+  return {
+    enumerable  : !(bitmap & 1),
+    configurable: !(bitmap & 2),
+    writable    : !(bitmap & 4),
+    value       : value
+  };
+};
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// add fake Function#toString
+// for correct work wrapped methods / constructors with methods like LoDash isNative
+var global    = __webpack_require__(1)
+  , hide      = __webpack_require__(8)
+  , SRC       = __webpack_require__(12)('src')
+  , TO_STRING = 'toString'
+  , $toString = Function[TO_STRING]
+  , TPL       = ('' + $toString).split(TO_STRING);
+
+__webpack_require__(3).inspectSource = function(it){
+  return $toString.call(it);
+};
+
+(module.exports = function(O, key, val, safe){
+  if(typeof val == 'function'){
+    val.hasOwnProperty(SRC) || hide(val, SRC, O[key] ? '' + O[key] : TPL.join(String(key)));
+    val.hasOwnProperty('name') || hide(val, 'name', key);
+  }
+  if(O === global){
+    O[key] = val;
+  } else {
+    if(!safe)delete O[key];
+    hide(O, key, val);
+  }
+})(Function.prototype, TO_STRING, function toString(){
+  return typeof this == 'function' && this[SRC] || $toString.call(this);
+});
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = __webpack_require__(1)
+  , SHARED = '__core-js_shared__'
+  , store  = global[SHARED] || (global[SHARED] = {});
+module.exports = function(key){
+  return store[key] || (store[key] = {});
+};
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports) {
+
+// 7.1.4 ToInteger
+var ceil  = Math.ceil
+  , floor = Math.floor;
+module.exports = function(it){
+  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
+};
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.15 ToLength
+var toInteger = __webpack_require__(36)
+  , min       = Math.min;
+module.exports = function(it){
+  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+};
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var classof   = __webpack_require__(24)
+  , ITERATOR  = __webpack_require__(2)('iterator')
+  , Iterators = __webpack_require__(9);
+module.exports = __webpack_require__(3).getIteratorMethod = function(it){
+  if(it != undefined)return it[ITERATOR]
+    || it['@@iterator']
+    || Iterators[classof(it)];
+};
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var ctx         = __webpack_require__(5)
+  , $export     = __webpack_require__(6)
+  , toObject    = __webpack_require__(11)
+  , call        = __webpack_require__(30)
+  , isArrayIter = __webpack_require__(28)
+  , toLength    = __webpack_require__(37)
+  , getIterFn   = __webpack_require__(38);
+$export($export.S + $export.F * !__webpack_require__(31)(function(iter){ Array.from(iter); }), 'Array', {
+  // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
+  from: function from(arrayLike/*, mapfn = undefined, thisArg = undefined*/){
+    var O       = toObject(arrayLike)
+      , C       = typeof this == 'function' ? this : Array
+      , $$      = arguments
+      , $$len   = $$.length
+      , mapfn   = $$len > 1 ? $$[1] : undefined
+      , mapping = mapfn !== undefined
+      , index   = 0
+      , iterFn  = getIterFn(O)
+      , length, result, step, iterator;
+    if(mapping)mapfn = ctx(mapfn, $$len > 2 ? $$[2] : undefined, 2);
+    // if object isn't iterable or it's array with default iterator - use simple case
+    if(iterFn != undefined && !(C == Array && isArrayIter(iterFn))){
+      for(iterator = iterFn.call(O), result = new C; !(step = iterator.next()).done; index++){
+        result[index] = mapping ? call(iterator, mapfn, [step.value, index], true) : step.value;
+      }
+    } else {
+      length = toLength(O.length);
+      for(result = new C(length); length > index; index++){
+        result[index] = mapping ? mapfn(O[index], index) : O[index];
+      }
+    }
+    result.length = index;
+    return result;
+  }
+});
+
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.3.1 Object.assign(target, source)
+var $export = __webpack_require__(6);
+
+$export($export.S + $export.F, 'Object', {assign: __webpack_require__(32)});
+
+/***/ }),
+/* 41 */
 /***/ (function(module, exports) {
 
 /*!
@@ -11268,1077 +12221,33 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
 ;
 
 /***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _jquery = __webpack_require__(0);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var MobileMenu = function () {
-	function MobileMenu() {
-		_classCallCheck(this, MobileMenu);
-
-		this.siteHeader = (0, _jquery2.default)('.site-header');
-		this.menuIcon = (0, _jquery2.default)('.site-header__menu-icon');
-		this.menuContent = (0, _jquery2.default)('.site-header__menu-content');
-		this.events();
-	}
-
-	_createClass(MobileMenu, [{
-		key: 'events',
-		value: function events() {
-			this.menuIcon.click(this.toggleTheMenu.bind(this));
-		}
-	}, {
-		key: 'toggleTheMenu',
-		value: function toggleTheMenu() {
-			this.menuContent.toggleClass('site-header__menu-content--is-visible');
-			this.siteHeader.toggleClass('site-header--is-expanded');
-			this.menuIcon.toggleClass('site-header__menu-icon--close-x');
-		}
-	}]);
-
-	return MobileMenu;
-}();
-
-// $(document).ready(function(){
-// 	alert('moose');
-// });
-
-exports.default = MobileMenu;
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _jquery = __webpack_require__(0);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Modal = function () {
-	function Modal() {
-		_classCallCheck(this, Modal);
-
-		this.openModalButton = (0, _jquery2.default)('.open-modal');
-		this.modal = (0, _jquery2.default)('.modal');
-		this.closeModalButton = (0, _jquery2.default)('.modal__close');
-		this.events();
-	}
-
-	_createClass(Modal, [{
-		key: 'events',
-		value: function events() {
-			// clicking the open modal button
-			this.openModalButton.click(this.openModal.bind(this));
-
-			// clicking the x close modal button
-			this.closeModalButton.click(this.closeModal.bind(this));
-
-			// pushes any key
-			(0, _jquery2.default)(document).keyup(this.keyPressHandler.bind(this));
-		}
-	}, {
-		key: 'keyPressHandler',
-		value: function keyPressHandler(e) {
-			if (e.keyCode == 27) {
-				this.closeModal();
-			}
-		}
-	}, {
-		key: 'openModal',
-		value: function openModal() {
-			this.modal.addClass('modal--is-visible');
-			return false;
-		}
-	}, {
-		key: 'closeModal',
-		value: function closeModal() {
-			this.modal.removeClass('modal--is-visible');
-			return false;
-		}
-	}]);
-
-	return Modal;
-}();
-
-exports.default = Modal;
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _jquery = __webpack_require__(0);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _noframework = __webpack_require__(13);
-
-var _noframework2 = _interopRequireDefault(_noframework);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var RevealOnScroll = function () {
-	function RevealOnScroll(els, offset) {
-		_classCallCheck(this, RevealOnScroll);
-
-		this.itemsToReveal = els;
-		this.offsetPercentage = offset;
-		this.hideInitially();
-		this.createWaypoints();
-	}
-
-	_createClass(RevealOnScroll, [{
-		key: 'hideInitially',
-		value: function hideInitially() {
-			this.itemsToReveal.addClass('reveal-item');
-		}
-	}, {
-		key: 'createWaypoints',
-		value: function createWaypoints() {
-			var that = this;
-			this.itemsToReveal.each(function () {
-				var currentItem = this;
-				new Waypoint({
-					element: currentItem,
-					handler: function handler() {
-						(0, _jquery2.default)(currentItem).addClass('reveal-item--is-visible');
-					},
-					offset: that.offsetPercentage
-				});
-			});
-		}
-	}]);
-
-	return RevealOnScroll;
-}();
-
-exports.default = RevealOnScroll;
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _jquery = __webpack_require__(0);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _noframework = __webpack_require__(13);
-
-var _noframework2 = _interopRequireDefault(_noframework);
-
-var _jquerySmoothScroll = __webpack_require__(22);
-
-var _jquerySmoothScroll2 = _interopRequireDefault(_jquerySmoothScroll);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var StickyHeader = function () {
-	function StickyHeader() {
-		_classCallCheck(this, StickyHeader);
-
-		this.lazyImages = (0, _jquery2.default)('.lazyload');
-		this.siteHeader = (0, _jquery2.default)('.site-header');
-		this.headerTriggerElement = (0, _jquery2.default)('.large-hero__title');
-		this.createHeaderWaypoint();
-		this.pageSections = (0, _jquery2.default)('.page-section');
-		this.headerLinks = (0, _jquery2.default)('.primary-nav a');
-		this.createPageSectionWaypoints();
-		this.addSmoothScrolling();
-		this.refreshWaypoints();
-	}
-
-	_createClass(StickyHeader, [{
-		key: 'refreshWaypoints',
-		value: function refreshWaypoints() {
-			this.lazyImages.on(function () {
-				// changed ".load" to ".on"
-				Waypoint.refreshAll();
-			});
-		}
-	}, {
-		key: 'addSmoothScrolling',
-		value: function addSmoothScrolling() {
-			this.headerLinks.smoothScroll();
-		}
-	}, {
-		key: 'createHeaderWaypoint',
-		value: function createHeaderWaypoint() {
-			var that = this;
-			new Waypoint({
-				element: this.headerTriggerElement[0],
-				handler: function handler(direction) {
-					if (direction == "down") {
-						that.siteHeader.addClass('site-header--dark');
-					} else {
-						that.siteHeader.removeClass('site-header--dark');
-					}
-				}
-			});
-		}
-	}, {
-		key: 'createPageSectionWaypoints',
-		value: function createPageSectionWaypoints() {
-			var that = this;
-			this.pageSections.each(function () {
-				var currentPageSection = this;
-				new Waypoint({
-					element: currentPageSection,
-					handler: function handler(direction) {
-						if (direction == "down") {
-							var matchingHeaderLink = currentPageSection.getAttribute('data-matching-link');
-							that.headerLinks.removeClass('is-current-link');
-							(0, _jquery2.default)(matchingHeaderLink).addClass('is-current-link');
-						}
-					},
-					offset: "18%"
-				});
-
-				new Waypoint({
-					element: currentPageSection,
-					handler: function handler(direction) {
-						if (direction == "up") {
-							var matchingHeaderLink = currentPageSection.getAttribute('data-matching-link');
-							that.headerLinks.removeClass('is-current-link');
-							(0, _jquery2.default)(matchingHeaderLink).addClass('is-current-link');
-						}
-					},
-					offset: "-40%"
-				});
-			});
-		}
-	}]);
-
-	return StickyHeader;
-}();
-
-exports.default = StickyHeader;
-
-/***/ }),
-/* 18 */,
-/* 19 */,
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-__webpack_require__(41);
-
-__webpack_require__(40);
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Parallax = function () {
-  function Parallax(selector, options) {
-    _classCallCheck(this, Parallax);
-
-    this.lastPosition = -1;
-
-    // Establish default settings
-    this.settings = Object.assign({
-      speed: 0.2
-    }, options);
-
-    if (typeof selector === 'string') {
-      this.elems = Array.from(document.querySelectorAll(selector));
-    } else if (Array.isArray(selector)) {
-      this.elems = selector;
-    } else {
-      this.elems = [selector];
-    }
-  }
-
-  _createClass(Parallax, [{
-    key: 'updatePosition',
-    value: function updatePosition() {
-      var _this = this;
-
-      this.elems.forEach(function (elem) {
-        var offset = elem.getBoundingClientRect().top + _this.lastPosition;
-        var yPosition = Math.round((offset - _this.lastPosition) * _this.settings.speed);
-
-        // Apply the y-axis transform
-        elem.style.transform = 'translate3d(0, ' + yPosition * -1 + 'px, 0)'; // eslint-disable-line
-      });
-    }
-  }, {
-    key: 'animate',
-    value: function animate() {
-      var _this2 = this;
-
-      // If the offset position hasn't changed, skip this frame
-      if (this.lastPosition === window.pageYOffset) {
-        window.requestAnimationFrame(function () {
-          _this2.animate();
-        });
-
-        return false;
-      }
-
-      // Save the new offset position
-      this.lastPosition = window.pageYOffset;
-
-      this.updatePosition();
-
-      return window.requestAnimationFrame(function () {
-        _this2.animate();
-      });
-    }
-  }]);
-
-  return Parallax;
-}();
-
-exports.default = Parallax;
-module.exports = exports['default'];
-
-
-/***/ }),
-/* 21 */,
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * jQuery Smooth Scroll - v2.1.2 - 2017-01-19
- * https://github.com/kswedberg/jquery-smooth-scroll
- * Copyright (c) 2017 Karl Swedberg
- * Licensed MIT
- */
-
-(function(factory) {
-  if (true) {
-    // AMD. Register as an anonymous module.
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(0)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS
-    factory(require('jquery'));
-  } else {
-    // Browser globals
-    factory(jQuery);
-  }
-}(function($) {
-
-  var version = '2.1.2';
-  var optionOverrides = {};
-  var defaults = {
-    exclude: [],
-    excludeWithin: [],
-    offset: 0,
-
-    // one of 'top' or 'left'
-    direction: 'top',
-
-    // if set, bind click events through delegation
-    //  supported since jQuery 1.4.2
-    delegateSelector: null,
-
-    // jQuery set of elements you wish to scroll (for $.smoothScroll).
-    //  if null (default), $('html, body').firstScrollable() is used.
-    scrollElement: null,
-
-    // only use if you want to override default behavior
-    scrollTarget: null,
-
-    // fn(opts) function to be called before scrolling occurs.
-    // `this` is the element(s) being scrolled
-    beforeScroll: function() {},
-
-    // fn(opts) function to be called after scrolling occurs.
-    // `this` is the triggering element
-    afterScroll: function() {},
-
-    // easing name. jQuery comes with "swing" and "linear." For others, you'll need an easing plugin
-    // from jQuery UI or elsewhere
-    easing: 'swing',
-
-    // speed can be a number or 'auto'
-    // if 'auto', the speed will be calculated based on the formula:
-    // (current scroll position - target scroll position) / autoCoeffic
-    speed: 400,
-
-    // coefficient for "auto" speed
-    autoCoefficient: 2,
-
-    // $.fn.smoothScroll only: whether to prevent the default click action
-    preventDefault: true
-  };
-
-  var getScrollable = function(opts) {
-    var scrollable = [];
-    var scrolled = false;
-    var dir = opts.dir && opts.dir === 'left' ? 'scrollLeft' : 'scrollTop';
-
-    this.each(function() {
-      var el = $(this);
-
-      if (this === document || this === window) {
-        return;
-      }
-
-      if (document.scrollingElement && (this === document.documentElement || this === document.body)) {
-        scrollable.push(document.scrollingElement);
-
-        return false;
-      }
-
-      if (el[dir]() > 0) {
-        scrollable.push(this);
-      } else {
-        // if scroll(Top|Left) === 0, nudge the element 1px and see if it moves
-        el[dir](1);
-        scrolled = el[dir]() > 0;
-
-        if (scrolled) {
-          scrollable.push(this);
-        }
-        // then put it back, of course
-        el[dir](0);
-      }
-    });
-
-    if (!scrollable.length) {
-      this.each(function() {
-        // If no scrollable elements and <html> has scroll-behavior:smooth because
-        // "When this property is specified on the root element, it applies to the viewport instead."
-        // and "The scroll-behavior property of the … body element is *not* propagated to the viewport."
-        // → https://drafts.csswg.org/cssom-view/#propdef-scroll-behavior
-        if (this === document.documentElement && $(this).css('scrollBehavior') === 'smooth') {
-          scrollable = [this];
-        }
-
-        // If still no scrollable elements, fall back to <body>,
-        // if it's in the jQuery collection
-        // (doing this because Safari sets scrollTop async,
-        // so can't set it to 1 and immediately get the value.)
-        if (!scrollable.length && this.nodeName === 'BODY') {
-          scrollable = [this];
-        }
-      });
-    }
-
-    // Use the first scrollable element if we're calling firstScrollable()
-    if (opts.el === 'first' && scrollable.length > 1) {
-      scrollable = [scrollable[0]];
-    }
-
-    return scrollable;
-  };
-
-  var rRelative = /^([\-\+]=)(\d+)/;
-  $.fn.extend({
-    scrollable: function(dir) {
-      var scrl = getScrollable.call(this, {dir: dir});
-
-      return this.pushStack(scrl);
-    },
-    firstScrollable: function(dir) {
-      var scrl = getScrollable.call(this, {el: 'first', dir: dir});
-
-      return this.pushStack(scrl);
-    },
-
-    smoothScroll: function(options, extra) {
-      options = options || {};
-
-      if (options === 'options') {
-        if (!extra) {
-          return this.first().data('ssOpts');
-        }
-
-        return this.each(function() {
-          var $this = $(this);
-          var opts = $.extend($this.data('ssOpts') || {}, extra);
-
-          $(this).data('ssOpts', opts);
-        });
-      }
-
-      var opts = $.extend({}, $.fn.smoothScroll.defaults, options);
-
-      var clickHandler = function(event) {
-        var escapeSelector = function(str) {
-          return str.replace(/(:|\.|\/)/g, '\\$1');
-        };
-
-        var link = this;
-        var $link = $(this);
-        var thisOpts = $.extend({}, opts, $link.data('ssOpts') || {});
-        var exclude = opts.exclude;
-        var excludeWithin = thisOpts.excludeWithin;
-        var elCounter = 0;
-        var ewlCounter = 0;
-        var include = true;
-        var clickOpts = {};
-        var locationPath = $.smoothScroll.filterPath(location.pathname);
-        var linkPath = $.smoothScroll.filterPath(link.pathname);
-        var hostMatch = location.hostname === link.hostname || !link.hostname;
-        var pathMatch = thisOpts.scrollTarget || (linkPath === locationPath);
-        var thisHash = escapeSelector(link.hash);
-
-        if (thisHash && !$(thisHash).length) {
-          include = false;
-        }
-
-        if (!thisOpts.scrollTarget && (!hostMatch || !pathMatch || !thisHash)) {
-          include = false;
-        } else {
-          while (include && elCounter < exclude.length) {
-            if ($link.is(escapeSelector(exclude[elCounter++]))) {
-              include = false;
-            }
-          }
-
-          while (include && ewlCounter < excludeWithin.length) {
-            if ($link.closest(excludeWithin[ewlCounter++]).length) {
-              include = false;
-            }
-          }
-        }
-
-        if (include) {
-          if (thisOpts.preventDefault) {
-            event.preventDefault();
-          }
-
-          $.extend(clickOpts, thisOpts, {
-            scrollTarget: thisOpts.scrollTarget || thisHash,
-            link: link
-          });
-
-          $.smoothScroll(clickOpts);
-        }
-      };
-
-      if (options.delegateSelector !== null) {
-        this
-        .off('click.smoothscroll', options.delegateSelector)
-        .on('click.smoothscroll', options.delegateSelector, clickHandler);
-      } else {
-        this
-        .off('click.smoothscroll')
-        .on('click.smoothscroll', clickHandler);
-      }
-
-      return this;
-    }
-  });
-
-  var getExplicitOffset = function(val) {
-    var explicit = {relative: ''};
-    var parts = typeof val === 'string' && rRelative.exec(val);
-
-    if (typeof val === 'number') {
-      explicit.px = val;
-    } else if (parts) {
-      explicit.relative = parts[1];
-      explicit.px = parseFloat(parts[2]) || 0;
-    }
-
-    return explicit;
-  };
-
-  $.smoothScroll = function(options, px) {
-    if (options === 'options' && typeof px === 'object') {
-      return $.extend(optionOverrides, px);
-    }
-    var opts, $scroller, speed, delta;
-    var explicitOffset = getExplicitOffset(options);
-    var scrollTargetOffset = {};
-    var scrollerOffset = 0;
-    var offPos = 'offset';
-    var scrollDir = 'scrollTop';
-    var aniProps = {};
-    var aniOpts = {};
-
-    if (explicitOffset.px) {
-      opts = $.extend({link: null}, $.fn.smoothScroll.defaults, optionOverrides);
-    } else {
-      opts = $.extend({link: null}, $.fn.smoothScroll.defaults, options || {}, optionOverrides);
-
-      if (opts.scrollElement) {
-        offPos = 'position';
-
-        if (opts.scrollElement.css('position') === 'static') {
-          opts.scrollElement.css('position', 'relative');
-        }
-      }
-
-      if (px) {
-        explicitOffset = getExplicitOffset(px);
-      }
-    }
-
-    scrollDir = opts.direction === 'left' ? 'scrollLeft' : scrollDir;
-
-    if (opts.scrollElement) {
-      $scroller = opts.scrollElement;
-
-      if (!explicitOffset.px && !(/^(?:HTML|BODY)$/).test($scroller[0].nodeName)) {
-        scrollerOffset = $scroller[scrollDir]();
-      }
-    } else {
-      $scroller = $('html, body').firstScrollable(opts.direction);
-    }
-
-    // beforeScroll callback function must fire before calculating offset
-    opts.beforeScroll.call($scroller, opts);
-
-    scrollTargetOffset = explicitOffset.px ? explicitOffset : {
-      relative: '',
-      px: ($(opts.scrollTarget)[offPos]() && $(opts.scrollTarget)[offPos]()[opts.direction]) || 0
-    };
-
-    aniProps[scrollDir] = scrollTargetOffset.relative + (scrollTargetOffset.px + scrollerOffset + opts.offset);
-
-    speed = opts.speed;
-
-    // automatically calculate the speed of the scroll based on distance / coefficient
-    if (speed === 'auto') {
-
-      // $scroller[scrollDir]() is position before scroll, aniProps[scrollDir] is position after
-      // When delta is greater, speed will be greater.
-      delta = Math.abs(aniProps[scrollDir] - $scroller[scrollDir]());
-
-      // Divide the delta by the coefficient
-      speed = delta / opts.autoCoefficient;
-    }
-
-    aniOpts = {
-      duration: speed,
-      easing: opts.easing,
-      complete: function() {
-        opts.afterScroll.call(opts.link, opts);
-      }
-    };
-
-    if (opts.step) {
-      aniOpts.step = opts.step;
-    }
-
-    if ($scroller.length) {
-      $scroller.stop().animate(aniProps, aniOpts);
-    } else {
-      opts.afterScroll.call(opts.link, opts);
-    }
-  };
-
-  $.smoothScroll.version = version;
-  $.smoothScroll.filterPath = function(string) {
-    string = string || '';
-
-    return string
-      .replace(/^\//, '')
-      .replace(/(?:index|default).[a-zA-Z]{3,4}$/, '')
-      .replace(/\/$/, '');
-  };
-
-  // default options
-  $.fn.smoothScroll.defaults = defaults;
-
-}));
-
-
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports) {
-
-module.exports = function(it){
-  if(typeof it != 'function')throw TypeError(it + ' is not a function!');
-  return it;
-};
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var isObject = __webpack_require__(30);
-module.exports = function(it){
-  if(!isObject(it))throw TypeError(it + ' is not an object!');
-  return it;
-};
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// getting tag from 19.1.3.6 Object.prototype.toString()
-var cof = __webpack_require__(4)
-  , TAG = __webpack_require__(2)('toStringTag')
-  // ES3 wrong here
-  , ARG = cof(function(){ return arguments; }()) == 'Arguments';
-
-module.exports = function(it){
-  var O, T, B;
-  return it === undefined ? 'Undefined' : it === null ? 'Null'
-    // @@toStringTag case
-    : typeof (T = (O = Object(it))[TAG]) == 'string' ? T
-    // builtinTag case
-    : ARG ? cof(O)
-    // ES3 arguments fallback
-    : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
-};
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports) {
-
-// 7.2.1 RequireObjectCoercible(argument)
-module.exports = function(it){
-  if(it == undefined)throw TypeError("Can't call method on  " + it);
-  return it;
-};
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// Thank's IE8 for his funny defineProperty
-module.exports = !__webpack_require__(7)(function(){
-  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
-});
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// fallback for non-array-like ES3 and non-enumerable old V8 strings
-var cof = __webpack_require__(4);
-module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
-  return cof(it) == 'String' ? it.split('') : Object(it);
-};
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// check on default Array iterator
-var Iterators  = __webpack_require__(9)
-  , ITERATOR   = __webpack_require__(2)('iterator')
-  , ArrayProto = Array.prototype;
-
-module.exports = function(it){
-  return it !== undefined && (Iterators.Array === it || ArrayProto[ITERATOR] === it);
-};
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports) {
-
-module.exports = function(it){
-  return typeof it === 'object' ? it !== null : typeof it === 'function';
-};
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// call something on iterator step with safe closing on error
-var anObject = __webpack_require__(24);
-module.exports = function(iterator, fn, value, entries){
-  try {
-    return entries ? fn(anObject(value)[0], value[1]) : fn(value);
-  // 7.4.6 IteratorClose(iterator, completion)
-  } catch(e){
-    var ret = iterator['return'];
-    if(ret !== undefined)anObject(ret.call(iterator));
-    throw e;
-  }
-};
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var ITERATOR     = __webpack_require__(2)('iterator')
-  , SAFE_CLOSING = false;
-
-try {
-  var riter = [7][ITERATOR]();
-  riter['return'] = function(){ SAFE_CLOSING = true; };
-  Array.from(riter, function(){ throw 2; });
-} catch(e){ /* empty */ }
-
-module.exports = function(exec, skipClosing){
-  if(!skipClosing && !SAFE_CLOSING)return false;
-  var safe = false;
-  try {
-    var arr  = [7]
-      , iter = arr[ITERATOR]();
-    iter.next = function(){ safe = true; };
-    arr[ITERATOR] = function(){ return iter; };
-    exec(arr);
-  } catch(e){ /* empty */ }
-  return safe;
-};
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.1 Object.assign(target, source, ...)
-var $        = __webpack_require__(10)
-  , toObject = __webpack_require__(11)
-  , IObject  = __webpack_require__(28);
-
-// should work with symbols and should have deterministic property order (V8 bug)
-module.exports = __webpack_require__(7)(function(){
-  var a = Object.assign
-    , A = {}
-    , B = {}
-    , S = Symbol()
-    , K = 'abcdefghijklmnopqrst';
-  A[S] = 7;
-  K.split('').forEach(function(k){ B[k] = k; });
-  return a({}, A)[S] != 7 || Object.keys(a({}, B)).join('') != K;
-}) ? function assign(target, source){ // eslint-disable-line no-unused-vars
-  var T     = toObject(target)
-    , $$    = arguments
-    , $$len = $$.length
-    , index = 1
-    , getKeys    = $.getKeys
-    , getSymbols = $.getSymbols
-    , isEnum     = $.isEnum;
-  while($$len > index){
-    var S      = IObject($$[index++])
-      , keys   = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S)
-      , length = keys.length
-      , j      = 0
-      , key;
-    while(length > j)if(isEnum.call(S, key = keys[j++]))T[key] = S[key];
-  }
-  return T;
-} : Object.assign;
-
-/***/ }),
-/* 34 */
-/***/ (function(module, exports) {
-
-module.exports = function(bitmap, value){
-  return {
-    enumerable  : !(bitmap & 1),
-    configurable: !(bitmap & 2),
-    writable    : !(bitmap & 4),
-    value       : value
-  };
-};
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// add fake Function#toString
-// for correct work wrapped methods / constructors with methods like LoDash isNative
-var global    = __webpack_require__(1)
-  , hide      = __webpack_require__(8)
-  , SRC       = __webpack_require__(12)('src')
-  , TO_STRING = 'toString'
-  , $toString = Function[TO_STRING]
-  , TPL       = ('' + $toString).split(TO_STRING);
-
-__webpack_require__(3).inspectSource = function(it){
-  return $toString.call(it);
-};
-
-(module.exports = function(O, key, val, safe){
-  if(typeof val == 'function'){
-    val.hasOwnProperty(SRC) || hide(val, SRC, O[key] ? '' + O[key] : TPL.join(String(key)));
-    val.hasOwnProperty('name') || hide(val, 'name', key);
-  }
-  if(O === global){
-    O[key] = val;
-  } else {
-    if(!safe)delete O[key];
-    hide(O, key, val);
-  }
-})(Function.prototype, TO_STRING, function toString(){
-  return typeof this == 'function' && this[SRC] || $toString.call(this);
-});
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var global = __webpack_require__(1)
-  , SHARED = '__core-js_shared__'
-  , store  = global[SHARED] || (global[SHARED] = {});
-module.exports = function(key){
-  return store[key] || (store[key] = {});
-};
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports) {
-
-// 7.1.4 ToInteger
-var ceil  = Math.ceil
-  , floor = Math.floor;
-module.exports = function(it){
-  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
-};
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 7.1.15 ToLength
-var toInteger = __webpack_require__(37)
-  , min       = Math.min;
-module.exports = function(it){
-  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
-};
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var classof   = __webpack_require__(25)
-  , ITERATOR  = __webpack_require__(2)('iterator')
-  , Iterators = __webpack_require__(9);
-module.exports = __webpack_require__(3).getIteratorMethod = function(it){
-  if(it != undefined)return it[ITERATOR]
-    || it['@@iterator']
-    || Iterators[classof(it)];
-};
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var ctx         = __webpack_require__(5)
-  , $export     = __webpack_require__(6)
-  , toObject    = __webpack_require__(11)
-  , call        = __webpack_require__(31)
-  , isArrayIter = __webpack_require__(29)
-  , toLength    = __webpack_require__(38)
-  , getIterFn   = __webpack_require__(39);
-$export($export.S + $export.F * !__webpack_require__(32)(function(iter){ Array.from(iter); }), 'Array', {
-  // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
-  from: function from(arrayLike/*, mapfn = undefined, thisArg = undefined*/){
-    var O       = toObject(arrayLike)
-      , C       = typeof this == 'function' ? this : Array
-      , $$      = arguments
-      , $$len   = $$.length
-      , mapfn   = $$len > 1 ? $$[1] : undefined
-      , mapping = mapfn !== undefined
-      , index   = 0
-      , iterFn  = getIterFn(O)
-      , length, result, step, iterator;
-    if(mapping)mapfn = ctx(mapfn, $$len > 2 ? $$[2] : undefined, 2);
-    // if object isn't iterable or it's array with default iterator - use simple case
-    if(iterFn != undefined && !(C == Array && isArrayIter(iterFn))){
-      for(iterator = iterFn.call(O), result = new C; !(step = iterator.next()).done; index++){
-        result[index] = mapping ? call(iterator, mapfn, [step.value, index], true) : step.value;
-      }
-    } else {
-      length = toLength(O.length);
-      for(result = new C(length); length > index; index++){
-        result[index] = mapping ? mapfn(O[index], index) : O[index];
-      }
-    }
-    result.length = index;
-    return result;
-  }
-});
-
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.3.1 Object.assign(target, source)
-var $export = __webpack_require__(6);
-
-$export($export.S + $export.F, 'Object', {assign: __webpack_require__(33)});
-
-/***/ }),
 /* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _MobileMenu = __webpack_require__(14);
+var _MobileMenu = __webpack_require__(13);
 
 var _MobileMenu2 = _interopRequireDefault(_MobileMenu);
 
-var _RevealOnScroll = __webpack_require__(16);
+var _RevealOnScroll = __webpack_require__(15);
 
 var _RevealOnScroll2 = _interopRequireDefault(_RevealOnScroll);
 
-var _StickyHeader = __webpack_require__(17);
+var _Scroller = __webpack_require__(16);
 
-var _StickyHeader2 = _interopRequireDefault(_StickyHeader);
+var _Scroller2 = _interopRequireDefault(_Scroller);
 
 var _jquery = __webpack_require__(0);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _Modal = __webpack_require__(15);
+var _Modal = __webpack_require__(14);
 
 var _Modal2 = _interopRequireDefault(_Modal);
 
-var _parallaxScroll = __webpack_require__(20);
+var _parallaxScroll = __webpack_require__(19);
 
 var _parallaxScroll2 = _interopRequireDefault(_parallaxScroll);
 
@@ -12348,10 +12257,7 @@ var parallax = new _parallaxScroll2.default('.js-parallax', {
   speed: 0.5 });
 parallax.animate();
 var mobileMenu = new _MobileMenu2.default();
-new _RevealOnScroll2.default((0, _jquery2.default)('.feature-item'), "85%");
-new _RevealOnScroll2.default((0, _jquery2.default)('.testimonial'), "60%");
-new _RevealOnScroll2.default((0, _jquery2.default)('.reveal'), "70%");
-var stickyHeader = new _StickyHeader2.default();
+new _RevealOnScroll2.default((0, _jquery2.default)('.box'), "70%");
 var modal = new _Modal2.default();
 
 /***/ })

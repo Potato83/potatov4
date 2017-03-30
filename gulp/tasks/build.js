@@ -35,8 +35,13 @@ gulp.task('copyGeneralFiles', ['deleteDistFolder'], function(){
 		.pipe(gulp.dest('./dist'));
 });
 
+gulp.task('fontawesomeCopy', ['copyGeneralFiles'], function(){
+	return gulp.src('./app/temp/styles/fonts/*')
+		.pipe(gulp.dest('./dist/assets/styles/fonts'));
+});
+
 gulp.task('optimizeImages', ['deleteDistFolder', 'styles', 'scripts'], function(){
-	return gulp.src(['./app/assets/images/**/*'])
+	return gulp.src('./app/assets/images/**/*')
 		.pipe(imagemin({
 			progressive: true,
 			interlaced: true,
@@ -58,5 +63,5 @@ gulp.task('usemin', function(){
 		.pipe(gulp.dest('./dist'));
 });
 
-gulp.task('build', ['deleteDistFolder', 'copyGeneralFiles', 'optimizeImages', 'useminTrigger']);
+gulp.task('build', ['deleteDistFolder', 'copyGeneralFiles', 'fontawesomeCopy', 'optimizeImages', 'useminTrigger']);
 
