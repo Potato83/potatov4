@@ -10707,6 +10707,7 @@ var _jquerySmoothScroll2 = _interopRequireDefault(_jquerySmoothScroll);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _jquery2.default)('#scroll').smoothScroll({ speed: 800 });
+(0, _jquery2.default)('#scrollUp').smoothScroll({ speed: 800 });
 
 /***/ }),
 /* 17 */,
@@ -12257,7 +12258,9 @@ var parallax = new _parallaxScroll2.default('.js-parallax', {
   speed: 0.5 });
 parallax.animate();
 var mobileMenu = new _MobileMenu2.default();
-new _RevealOnScroll2.default((0, _jquery2.default)('.box'), "70%");
+new _RevealOnScroll2.default((0, _jquery2.default)('.box'), "80%");
+new _RevealOnScroll2.default((0, _jquery2.default)('.text'), "95%");
+new _RevealOnScroll2.default((0, _jquery2.default)('.slide'), "70%");
 var modal = new _Modal2.default();
 
 /***/ })

@@ -1,11 +1,17 @@
+@define-mixin atSmallBg {
+	@media (min-width: 350px){
+		@mixin-content;
+	}
+}
+
 @define-mixin atSmall {
-	@media (min-width: 530px){
+	@media (min-width: 630px){
 		@mixin-content;
 	}
 }
 
 @define-mixin atMedium {
-	@media (min-width: 800px){
+	@media (min-width: 900px){
 		@mixin-content;
 	}
 }
@@ -16,10 +22,28 @@
 	}
 }
 
+@define-mixin atLargeBg {
+	@media (min-width: 1300px){
+		@mixin-content;
+	}
+}
+
+@define-mixin atHuge {
+	@media (min-width: 1600px){
+		@mixin-content;
+	}
+}
+
 @define-mixin clearfix{
 	&::after{
 		content: "";
 		clear: both;
 		display: table;
 	}
+}
+
+@define-mixin test{
+	background: orange;
+	height: 50px;
+	width: 50px;
 }

@@ -9,7 +9,9 @@ const parallax = new Parallax('.js-parallax', {
 });
 parallax.animate();
 var mobileMenu = new MobileMenu();
-new RevealOnScroll($('.box'), "70%");
+new RevealOnScroll($('.box'), "80%");
+new RevealOnScroll($('.text'), "95%");
+new RevealOnScroll($('.slide'), "70%");
 var modal = new Modal();
 
 

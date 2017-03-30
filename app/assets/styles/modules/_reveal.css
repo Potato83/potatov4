@@ -1,12 +1,12 @@
 .reveal-item{
 	opacity: 0;
 	transition: all 0.4s ease-out;
-	transform: scale(1.05);
+	/*transform: scale(100);*/
 	transform: translateX(500px);
 
 	&--is-visible{
 		opacity: 1;
-		transform: scale(1);
+		/*transform: scale(1);*/
 		transform: translateX(0px);
 	}
 }

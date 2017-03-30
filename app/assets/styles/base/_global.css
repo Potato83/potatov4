@@ -1,4 +1,10 @@
-html{
+html, body{
 	overflow-x: hidden;
+}
+
+body{
+	background: $black;
+	font-family: 'Oxygen', sans-serif;
+	max-width: 100%;
 }
 
