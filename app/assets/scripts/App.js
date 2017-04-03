@@ -1,10 +1,19 @@
 import MobileMenu from './modules/MobileMenu';
 import RevealOnScroll from './modules/RevealOnScroll';
-import foo from './modules/Scroller';
+import './modules/Scroller';
 import $ from 'jquery';
 
 $(document).ready(function() {
- $('.o-banner__bg').addClass('dumbo');
+ 
+	var $bg = $('.o-banner__bg');
+	var backgroundImage = window.getComputedStyle($bg[0], null).backgroundImage;
+	var image = backgroundImage.match(/url\((.*?)\)/)[1];
+			image = image.replace(/"/g, "");
+			var sprite = new Image();
+			sprite.src = image;
+   			sprite.onload = function() {
+   				$bg.addClass('dumbo');
+				}				
 });
 
 import Modal from './modules/Modal';

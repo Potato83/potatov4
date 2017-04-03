@@ -584,8 +584,9 @@ hr{
 
 .dumbo{
   opacity: 1;
-  -webkit-transition: opacity 0.4s ease-in;
-  transition: opacity 0.4s ease-in;
+  -webkit-transition: opacity 0.25s ease-in;
+  transition: opacity 0.25s ease-in;
+  /*border-radius: 50%;*/
 }
 
 .portfolio{
@@ -602,7 +603,6 @@ hr{
 .row{
 	width: 100%;
 	height: auto;
-	/*background: blue;*/
 	padding: 15px 0;
 }
 
@@ -612,8 +612,6 @@ hr{
 	margin: 10px auto;
 	box-sizing: border-box;
 }
-
-/*background: red;*/
 
 .box:hover{
   -webkit-transform: scale(1.01);
@@ -629,7 +627,7 @@ hr{
 
   .box {
     width: 40%;
-    display: inline-block;/*background: green;*/
+    display: inline-block;
   }
 }
 
@@ -637,7 +635,7 @@ hr{
 
   .box {
     width: 100%;
-    display: block;/*min-height: 300px;*/
+    display: block;
   }
 }
 
@@ -647,13 +645,11 @@ hr{
 	box-sizing: border-box;
 }
 
-/*text-align: left;*/
-
 @media (min-width: 630px) {
 
   .text {
     width: 40%;
-    display: inline-block;/*background: green;*/
+    display: inline-block;
     float: right;
     margin-right: 6%;
     text-align: left;
@@ -664,33 +660,62 @@ hr{
 
   .text {
     width: 100%;
-    float: none;/*background: green;*/
-    padding: 0 5px;/*display: block;*//*min-height: 200px;*/
+    float: none;
+    padding: 0 5px;
+    min-height: 125px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
   }
 }
 
+@media (width: 1024px) {
+
+  .text {
+    height: 125px;
+    float: left;
+  }
+}
+
 @media (min-width: 900px) {
 
-  .site {/*background: black;
-		border: 1px solid white;*/
+  .site {
     width: 25%;
-    margin: 20px 3%;
-    display: inline-block;/*display: flex;*//*background: blue;*/
+    margin: 20px 3% 0;
+    display: inline-block;
+    min-height: 318px;
+  }
+}
+
+@media (width: 1024px) {
+
+  .site {
+    height: 318px;
   }
 }
 
 a .fa{
 	color: #fff;
 	font-size: 2rem;
-	/*cursor: default;*/
 	position: absolute;
 	right: 0;
 	left: 0;
 	top: 50%;
 	z-index: 500;
+}
+
+@media (min-width: 630px) {
+
+  hr.divide {
+    width: 85%;
+  }
+}
+
+@media (min-width: 900px) {
+
+  hr.divide {
+    display: none;
+  }
 }
 
 .social{

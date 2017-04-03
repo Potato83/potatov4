@@ -12,7 +12,6 @@
 .row{
 	width: 100%;
 	height: auto;
-	/*background: blue;*/
 	padding: 15px 0;
 }
 
@@ -21,8 +20,6 @@
 	
 	margin: 10px auto;
 	box-sizing: border-box;
-	/*background: red;*/
-
 
 	&:hover{
 			transform: scale(1.01);
@@ -32,19 +29,18 @@
 		width: 100%;
 		height: auto;
 
+
 		
 	}
 
 	@mixin atSmall{
 		width: 40%;
 		display: inline-block;
-		/*background: green;*/
 	}
 
 	@mixin atMedium{
 		width: 100%;
 		display: block;
-		/*min-height: 300px;*/
 	}
 }
 
@@ -52,12 +48,10 @@
 	width: 90%;
 	margin: 10px auto;
 	box-sizing: border-box;
-	/*text-align: left;*/	
 
 	@mixin atSmall{
 		width: 40%;
 		display: inline-block;
-		/*background: green;*/
 		float: right;
 		margin-right: 6%;
 		text-align: left;
@@ -66,23 +60,27 @@
 	@mixin atMedium{
 		width: 100%;
 		float: none;
-		/*background: green;*/
 		padding: 0 5px;
-		/*display: block;*/
-		/*min-height: 200px;*/
+		min-height: 125px;
 		display: flex;
+	}
+
+	@mixin atIpad{
+		height: 125px;
+		float: left;
 	}
 }
 
 .site{
 	@mixin atMedium{
-		/*background: black;
-		border: 1px solid white;*/
 		width: 25%;
-		margin: 20px 3%;
+		margin: 20px 3% 0;
 		display: inline-block;
-		/*display: flex;*/
-		/*background: blue;*/
+		min-height: 318px;
+	}
+
+	@mixin atIpad{
+		height: 318px;	
 	}
 }
 
@@ -90,10 +88,20 @@
 a .fa{
 	color: #fff;
 	font-size: 2rem;
-	/*cursor: default;*/
 	position: absolute;
 	right: 0;
 	left: 0;
 	top: 50%;
 	z-index: 500;
+}
+
+hr.divide{
+	@mixin atSmall{
+		width: 85%;
+	}
+
+	@mixin atMedium{
+		display: none;
+	}
+	
 }

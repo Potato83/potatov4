@@ -19,8 +19,4 @@ class MobileMenu {
 	}
 }
 
-// $(document).ready(function(){
-// 	alert('moose');
-// });
-
 export default MobileMenu;

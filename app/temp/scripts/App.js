@@ -10552,10 +10552,6 @@ var MobileMenu = function () {
 	return MobileMenu;
 }();
 
-// $(document).ready(function(){
-// 	alert('moose');
-// });
-
 exports.default = MobileMenu;
 
 /***/ }),
@@ -12236,9 +12232,7 @@ var _RevealOnScroll = __webpack_require__(15);
 
 var _RevealOnScroll2 = _interopRequireDefault(_RevealOnScroll);
 
-var _Scroller = __webpack_require__(16);
-
-var _Scroller2 = _interopRequireDefault(_Scroller);
+__webpack_require__(16);
 
 var _jquery = __webpack_require__(0);
 
@@ -12255,11 +12249,20 @@ var _parallaxScroll2 = _interopRequireDefault(_parallaxScroll);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _jquery2.default)(document).ready(function () {
-  (0, _jquery2.default)('.o-banner__bg').addClass('dumbo');
+
+		var $bg = (0, _jquery2.default)('.o-banner__bg');
+		var backgroundImage = window.getComputedStyle($bg[0], null).backgroundImage;
+		var image = backgroundImage.match(/url\((.*?)\)/)[1];
+		image = image.replace(/"/g, "");
+		var sprite = new Image();
+		sprite.src = image;
+		sprite.onload = function () {
+				$bg.addClass('dumbo');
+		};
 });
 
 var parallax = new _parallaxScroll2.default('.js-parallax', {
-  speed: 0.5 });
+		speed: 0.5 });
 parallax.animate();
 
 var mobileMenu = new _MobileMenu2.default();
