@@ -12254,9 +12254,19 @@ var _parallaxScroll2 = _interopRequireDefault(_parallaxScroll);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(0, _jquery2.default)(document).ready(function () {
+  // $('.o-banner__bg').addClass('.o-banner__dumbo');
+  // alert('bloonie');
+  (0, _jquery2.default)('.o-banner__bg').addClass('dumbo');
+});
+
+// import Fader from './modules/Fader';
+// var fader = new Fader();
+
 var parallax = new _parallaxScroll2.default('.js-parallax', {
   speed: 0.5 });
 parallax.animate();
+
 var mobileMenu = new _MobileMenu2.default();
 new _RevealOnScroll2.default((0, _jquery2.default)('.box'), "80%");
 new _RevealOnScroll2.default((0, _jquery2.default)('.text'), "95%");
