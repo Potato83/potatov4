@@ -3,20 +3,11 @@ import RevealOnScroll from './modules/RevealOnScroll';
 import foo from './modules/Scroller';
 import $ from 'jquery';
 
-
 $(document).ready(function() {
-  // $('.o-banner__bg').addClass('.o-banner__dumbo');
-  // alert('bloonie');
  $('.o-banner__bg').addClass('dumbo');
 });
 
-
-
 import Modal from './modules/Modal';
-
-// import Fader from './modules/Fader';
-// var fader = new Fader();
-
 import Parallax from 'parallax-scroll';
 
 const parallax = new Parallax('.js-parallax', {
