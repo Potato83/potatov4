@@ -49,6 +49,10 @@
 	margin: 10px auto;
 	box-sizing: border-box;
 
+	p,a{
+		font-size: 1.175rem;
+	}
+
 	@mixin atSmall{
 		width: 40%;
 		display: inline-block;

@@ -466,8 +466,13 @@ html, body{
 
 body{
 	background: #211c1c;
-	font-family: 'Oxygen', sans-serif;
+	font-family: 'Fanwood Text', serif;
 	max-width: 100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+	font-family: 'Quattrocento Sans', sans-serif;
+	font-weight: 200;
 }
 
 a{
@@ -650,6 +655,10 @@ hr{
 	width: 90%;
 	margin: 10px auto;
 	box-sizing: border-box;
+}
+
+.text p,.text a{
+  font-size: 1.175rem;
 }
 
 @media (min-width: 630px) {
