@@ -562,6 +562,13 @@ hr{
   margin: 0;
 }
 
+@media (min-width: 630px) {
+
+  .o-banner h1 {
+    font-size: 4rem;
+  }
+}
+
 @media (min-width: 900px) {
 
   .o-banner h1 {
