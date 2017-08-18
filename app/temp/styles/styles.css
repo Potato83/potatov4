@@ -598,7 +598,6 @@ hr{
   opacity: 1;
   -webkit-transition: opacity 0.25s ease-in;
   transition: opacity 0.25s ease-in;
-  /*border-radius: 50%;*/
 }
 
 .portfolio{
